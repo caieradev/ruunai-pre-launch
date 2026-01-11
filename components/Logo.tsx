@@ -20,7 +20,7 @@ export default function Logo({ variant = 'light', size = 'md', className }: Logo
       <svg
         width="auto"
         height={height}
-        viewBox="0 0 180 48"
+        viewBox="0 0 120 48"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className="h-full w-auto"
