@@ -41,8 +41,8 @@ export default async function Image() {
               display: 'flex',
             }}
           >
-            <span style={{ color: '#FFFFFF' }}>R</span>
-            <span style={{ color: '#00E5A0' }}>A</span>
+            <span style={{ color: '#FFFFFF' }}>Ruun</span>
+            <span style={{ color: '#00E5A0' }}>AI</span>
           </div>
         </div>
 
