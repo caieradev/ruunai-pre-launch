@@ -31,7 +31,7 @@ export default function HeroSection() {
   }
 
   return (
-    <section className="relative min-h-screen bg-dark-bg py-16 sm:py-24 lg:py-32">
+    <section className="relative min-h-screen bg-dark-bg py-16 sm:py-24 lg:py-32 overflow-hidden">
       <Container size="lg">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
           {/* Left: Content */}
