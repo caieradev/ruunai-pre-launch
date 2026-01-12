@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     description: 'Personalized running plans that adapt to you',
     images: [
       {
-        url: '/opengraph-image',
+        url: '/images/og-image.png',
         width: 1200,
         height: 630,
         alt: 'RuunAI - Your AI Running Coach',
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     creator: '@ruun_ai',
     title: 'RuunAI - Your AI Running Coach',
     description: 'Personalized running plans that adapt to you',
-    images: ['/opengraph-image'],
+    images: ['/images/og-image.png'],
   },
   verification: {
     google: '', // Add your Google Search Console verification code here when ready
