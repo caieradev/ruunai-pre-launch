@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter, Space_Grotesk } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
+import { LanguageProvider } from '@/contexts/LanguageContext'
 import './globals.css'
 
 const inter = Inter({
@@ -98,6 +99,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: 'https://ruunai.com',
+    languages: {
+      'en': 'https://ruunai.com',
+      'pt-BR': 'https://ruunai.com',
+      'es': 'https://ruunai.com',
+    },
   },
   category: 'Sports & Fitness',
 }
@@ -156,8 +162,10 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans overflow-x-hidden">
-        {children}
-        <Analytics />
+        <LanguageProvider>
+          {children}
+          <Analytics />
+        </LanguageProvider>
       </body>
     </html>
   )

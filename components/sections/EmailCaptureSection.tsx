@@ -5,9 +5,10 @@ import Container from '@/components/ui/Container'
 import SectionHeading from '@/components/ui/SectionHeading'
 import Input from '@/components/ui/Input'
 import Button from '@/components/ui/Button'
-import { COPY, SITE_CONFIG } from '@/lib/constants'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function EmailCaptureSection() {
+  const { t } = useLanguage()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [isSubmitted, setIsSubmitted] = useState(false)
@@ -22,12 +23,12 @@ export default function EmailCaptureSection() {
 
     // Basic validation
     if (!email || !email.includes('@')) {
-      setError('Please enter a valid email address')
+      setError(t.emailCapture.errorInvalidEmail)
       return
     }
 
     if (!name || name.trim().length < 2) {
-      setError('Please enter your name')
+      setError(t.emailCapture.errorInvalidName)
       return
     }
 
@@ -48,7 +49,7 @@ export default function EmailCaptureSection() {
       if (response.ok) {
         // Success!
         console.log('✅ Subscriber added:', name, email)
-        setSuccessMessage(data.message || SITE_CONFIG.email.successMessage)
+        setSuccessMessage(data.message || t.emailCapture.successMessage)
         setIsSubmitted(true)
         setName('')
         setEmail('')
@@ -60,11 +61,11 @@ export default function EmailCaptureSection() {
         }, 5000)
       } else {
         // API returned an error
-        setError(data.error || 'Something went wrong. Please try again.')
+        setError(data.error || t.emailCapture.errorGeneric)
       }
     } catch (err) {
       console.error('Subscription error:', err)
-      setError('Failed to subscribe. Please check your connection and try again.')
+      setError(t.emailCapture.errorConnection)
     } finally {
       setIsLoading(false)
     }
@@ -74,15 +75,15 @@ export default function EmailCaptureSection() {
     <section id="early-access" className="bg-dark-bg py-20 sm:py-28">
       <Container size="sm">
         <SectionHeading
-          title={COPY.emailCapture.heading}
-          subtitle={COPY.emailCapture.subheading}
+          title={t.emailCapture.heading}
+          subtitle={t.emailCapture.subheading}
         />
 
         <form onSubmit={handleSubmit} className="mx-auto max-w-md">
           <div className="flex flex-col gap-4">
             <Input
               type="text"
-              placeholder="Your name"
+              placeholder={t.emailCapture.namePlaceholder}
               value={name}
               onChange={(e) => setName(e.target.value)}
               disabled={isSubmitted || isLoading}
@@ -91,7 +92,7 @@ export default function EmailCaptureSection() {
             <div className="flex flex-col gap-4 sm:flex-row">
               <Input
                 type="email"
-                placeholder={SITE_CONFIG.email.placeholder}
+                placeholder={t.emailCapture.emailPlaceholder}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 disabled={isSubmitted || isLoading}
@@ -102,7 +103,7 @@ export default function EmailCaptureSection() {
                 disabled={isSubmitted || isLoading}
                 className="sm:whitespace-nowrap"
               >
-                {isLoading ? 'Joining...' : COPY.emailCapture.buttonText}
+                {isLoading ? t.emailCapture.buttonTextLoading : t.emailCapture.buttonText}
               </Button>
             </div>
             {error && (

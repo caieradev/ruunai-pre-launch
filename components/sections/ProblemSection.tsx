@@ -1,19 +1,23 @@
+'use client'
+
 import Container from '@/components/ui/Container'
 import SectionHeading from '@/components/ui/SectionHeading'
 import Card from '@/components/ui/Card'
-import { COPY } from '@/lib/constants'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function ProblemSection() {
+  const { t } = useLanguage()
+
   return (
     <section className="bg-dark-bg py-20 sm:py-28">
       <Container>
         <SectionHeading
-          title={COPY.problem.heading}
-          subtitle={COPY.problem.subheading}
+          title={t.problem.heading}
+          subtitle={t.problem.subheading}
         />
 
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {COPY.problem.points.map((point, index) => (
+          {t.problem.points.map((point, index) => (
             <Card key={index} hoverable>
               {/* Icon/Number */}
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-accent-primary/10">

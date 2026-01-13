@@ -1,15 +1,19 @@
+'use client'
+
 import Container from '@/components/ui/Container'
 import SectionHeading from '@/components/ui/SectionHeading'
-import { COPY } from '@/lib/constants'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function SolutionSection() {
+  const { t } = useLanguage()
+
   return (
     <section id="how-it-works" className="bg-dark-surface py-20 sm:py-28">
       <Container>
-        <SectionHeading title={COPY.solution.heading} />
+        <SectionHeading title={t.solution.heading} />
 
         <div className="mx-auto max-w-4xl space-y-12">
-          {COPY.solution.steps.map((step, index) => (
+          {t.solution.steps.map((step, index) => (
             <div key={index} className="relative flex gap-6 sm:gap-8">
               {/* Number badge with connecting line */}
               <div className="relative flex flex-col items-center">
@@ -18,7 +22,7 @@ export default function SolutionSection() {
                 </div>
 
                 {/* Connecting line (except for last item) */}
-                {index < COPY.solution.steps.length - 1 && (
+                {index < t.solution.steps.length - 1 && (
                   <div className="mt-2 h-full w-px bg-gradient-to-b from-accent-primary/50 to-transparent" />
                 )}
               </div>

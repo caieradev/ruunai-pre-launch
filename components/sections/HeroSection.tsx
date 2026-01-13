@@ -3,9 +3,12 @@
 import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
 import Logo from '@/components/Logo'
-import { COPY } from '@/lib/constants'
+import LanguageSwitcher from '@/components/LanguageSwitcher'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function HeroSection() {
+  const { t } = useLanguage()
+
   // Training calendar data - simulates a week of training with different intensities
   const trainingWeeks = [
     ['easy', 'medium', 'rest', 'hard', 'medium', 'long', 'rest'],
@@ -33,6 +36,11 @@ export default function HeroSection() {
   return (
     <section className="relative min-h-screen bg-dark-bg py-16 sm:py-24 lg:py-32 overflow-hidden">
       <Container size="lg">
+        {/* Language Switcher - Top Right */}
+        <div className="absolute top-8 right-8 z-10">
+          <LanguageSwitcher />
+        </div>
+
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
           {/* Left: Content */}
           <div className="animate-fade-in">
@@ -43,30 +51,21 @@ export default function HeroSection() {
 
             {/* Headline */}
             <h1 className="text-4xl font-bold font-display text-text-primary sm:text-5xl lg:text-6xl leading-tight">
-              {COPY.hero.headline.split('Actually').map((part, i) =>
-                i === 0 ? (
-                  <span key={i}>{part}</span>
-                ) : (
-                  <span key={i}>
-                    <span className="gradient-text">Actually</span>
-                    {part}
-                  </span>
-                )
-              )}
+              {t.hero.headline}
             </h1>
 
             {/* Subheadline */}
             <p className="mt-6 text-lg text-text-secondary sm:text-xl leading-relaxed">
-              {COPY.hero.subheadline}
+              {t.hero.subheadline}
             </p>
 
             {/* CTAs */}
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
               <Button size="lg" onClick={handleScrollToEarlyAccess}>
-                {COPY.hero.ctaPrimary}
+                {t.hero.ctaPrimary}
               </Button>
               <Button variant="outline" size="lg" onClick={handleScrollToHowItWorks}>
-                {COPY.hero.ctaSecondary}
+                {t.hero.ctaSecondary}
               </Button>
             </div>
           </div>
@@ -77,9 +76,9 @@ export default function HeroSection() {
               {/* Header */}
               <div className="mb-6">
                 <h3 className="text-lg font-semibold text-text-primary mb-2">
-                  Your Personalized Plan
+                  {t.hero.calendar.title}
                 </h3>
-                <p className="text-sm text-text-muted">Adapts to your progress every week</p>
+                <p className="text-sm text-text-muted">{t.hero.calendar.subtitle}</p>
               </div>
 
               {/* Days of week labels */}
@@ -112,23 +111,23 @@ export default function HeroSection() {
               <div className="mt-6 flex flex-wrap gap-3 text-xs">
                 <div className="flex items-center gap-2">
                   <div className="h-3 w-3 rounded bg-accent-primary" />
-                  <span className="text-text-muted">Long run</span>
+                  <span className="text-text-muted">{t.hero.calendar.legend.longRun}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="h-3 w-3 rounded bg-accent-primary/70" />
-                  <span className="text-text-muted">Hard</span>
+                  <span className="text-text-muted">{t.hero.calendar.legend.hard}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="h-3 w-3 rounded bg-accent-secondary/60" />
-                  <span className="text-text-muted">Medium</span>
+                  <span className="text-text-muted">{t.hero.calendar.legend.medium}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="h-3 w-3 rounded bg-accent-secondary/30" />
-                  <span className="text-text-muted">Easy</span>
+                  <span className="text-text-muted">{t.hero.calendar.legend.easy}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="h-3 w-3 rounded bg-dark-border" />
-                  <span className="text-text-muted">Rest</span>
+                  <span className="text-text-muted">{t.hero.calendar.legend.rest}</span>
                 </div>
               </div>
 

@@ -1,12 +1,16 @@
+'use client'
+
 import Container from '@/components/ui/Container'
 import SectionHeading from '@/components/ui/SectionHeading'
-import { COPY } from '@/lib/constants'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function WhyDifferentSection() {
+  const { t } = useLanguage()
+
   return (
     <section className="bg-dark-bg py-20 sm:py-28">
       <Container>
-        <SectionHeading title={COPY.whyDifferent.heading} />
+        <SectionHeading title={t.whyDifferent.heading} />
 
         {/* Desktop: Table view */}
         <div className="hidden overflow-hidden rounded-xl border border-dark-border lg:block">
@@ -14,18 +18,18 @@ export default function WhyDifferentSection() {
             <thead>
               <tr className="border-b border-dark-border bg-dark-surface">
                 <th className="px-6 py-4 text-left text-sm font-semibold text-text-primary">
-                  Feature
+                  {t.whyDifferent.tableHeaders.feature}
                 </th>
                 <th className="px-6 py-4 text-left text-sm font-semibold text-text-muted">
-                  Traditional Plans
+                  {t.whyDifferent.tableHeaders.traditional}
                 </th>
                 <th className="bg-accent-primary/5 px-6 py-4 text-left text-sm font-semibold text-accent-primary">
-                  RuunAI
+                  {t.whyDifferent.tableHeaders.ruunai}
                 </th>
               </tr>
             </thead>
             <tbody>
-              {COPY.whyDifferent.comparison.map((row, index) => (
+              {t.whyDifferent.comparison.map((row, index) => (
                 <tr
                   key={index}
                   className="border-b border-dark-border last:border-b-0 hover:bg-dark-surface/50 transition-colors"
@@ -75,7 +79,7 @@ export default function WhyDifferentSection() {
 
         {/* Mobile: Card view */}
         <div className="space-y-6 lg:hidden">
-          {COPY.whyDifferent.comparison.map((row, index) => (
+          {t.whyDifferent.comparison.map((row, index) => (
             <div
               key={index}
               className="rounded-xl border border-dark-border bg-dark-surface p-6"
@@ -99,7 +103,7 @@ export default function WhyDifferentSection() {
                     />
                   </svg>
                   <div>
-                    <p className="text-xs font-medium text-text-muted mb-1">Traditional Plans</p>
+                    <p className="text-xs font-medium text-text-muted mb-1">{t.whyDifferent.tableHeaders.traditional}</p>
                     <p className="text-text-muted">{row.traditional}</p>
                   </div>
                 </div>
@@ -120,7 +124,7 @@ export default function WhyDifferentSection() {
                     />
                   </svg>
                   <div>
-                    <p className="text-xs font-medium text-accent-primary mb-1">RuunAI</p>
+                    <p className="text-xs font-medium text-accent-primary mb-1">{t.whyDifferent.tableHeaders.ruunai}</p>
                     <p className="text-text-primary">{row.ruunai}</p>
                   </div>
                 </div>
